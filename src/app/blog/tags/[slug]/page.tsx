@@ -48,7 +48,7 @@ export default async function TagPage({ params }: Props) {
             <h3 className="font-serif text-lg font-medium text-ink group-hover:text-accent transition-colors leading-snug">
               {post.title}
             </h3>
-            <div className="flex items-center gap-3 text-ink-4 font-mono text-xs flex-shrink-0">
+            <div className="flex items-center gap-3 text-ink-4 font-mono text-xs shrink-0">
               <time>{formatDate(post.publishedAt ?? post.createdAt, { month: 'short', day: 'numeric', year: 'numeric' })}</time>
               <span className="hidden sm:block">· {getReadingTime(post.content)}</span>
             </div>

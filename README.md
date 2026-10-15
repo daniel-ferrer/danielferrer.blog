@@ -2,7 +2,7 @@
 
 Personal blog — technical deep dives, lessons learned, evolving perspectives.
 
-Built with Next.js 16, SQLite (Prisma), react-markdown, and Tailwind CSS.
+Built with Next.js 16, SQLite (Prisma), react-markdown, and Tailwind CSS 4.
 
 ---
 
@@ -129,17 +129,22 @@ configured in this project.
 
 ## Dependency audit
 
-After the October 2026 dependency refresh, `npm audit` reports 10 findings
-(7 high, 3 moderate, 0 critical). These remain in the Tailwind 3 and Next.js
-ESLint dependency trees:
+After the October 2026 move to Tailwind CSS 4, `npm audit` reports 7 findings
+(5 high, 2 moderate, 0 critical), down from 10 (7 high, 3 moderate). Tailwind 4
+no longer depends on chokidar, fast-glob, postcss-nested or postcss-selector-parser,
+so those paths are gone. npm counts one finding per package in each remaining
+chain:
 
 - [braces stack exhaustion](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)
-  has no patched release. It propagates through chokidar, micromatch and
-  fast-glob into Tailwind and the Next.js ESLint preset.
+  has no patched release (5 high: braces, micromatch, fast-glob and the two
+  packages below). It reaches the Next.js ESLint preset through
+  `eslint-config-next` → `@next/eslint-plugin-next` → fast-glob → micromatch.
+  It is a lint-time dependency only and is not part of the built site.
 - [postcss-selector-parser CPU exhaustion](https://github.com/advisories/GHSA-rj75-hqrm-r3gf)
-  affects the parser versions used by Tailwind, postcss-nested and typography.
+  remains (2 moderate: the parser and typography) because
+  `@tailwindcss/typography` 0.5.20, the latest release, pins
+  postcss-selector-parser 6.0.10. It runs at build time only.
 
-Compatible dependency updates have been applied. The remaining npm proposals
-include migrating to Tailwind 4 and downgrading typography or the Next.js ESLint
-preset; these are deliberately deferred rather than applying
+npm's only proposed fixes are downgrading the Next.js ESLint preset to 14.x
+or typography to 0.5.4. These are deliberately deferred rather than applying
 `npm audit fix --force`. Recheck with `npm audit` as upstream fixes become available.

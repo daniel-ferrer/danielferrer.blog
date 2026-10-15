@@ -73,7 +73,7 @@ export function PostEditor({ mode, post }: Props) {
           <input
             type="text" value={title} onChange={e => setTitle(e.target.value)}
             placeholder="Post title…"
-            className="w-full font-serif text-3xl font-semibold text-ink bg-transparent border-0 border-b-2 border-paper-200 focus:outline-none focus:border-accent pb-3 placeholder:text-ink-5 transition"
+            className="w-full font-serif text-3xl font-semibold text-ink bg-transparent border-0 border-b-2 border-paper-200 focus:outline-hidden focus:border-accent pb-3 placeholder:text-ink-5 transition"
           />
 
           {/* Excerpt */}
@@ -81,7 +81,7 @@ export function PostEditor({ mode, post }: Props) {
             value={excerpt} onChange={e => setExcerpt(e.target.value)}
             placeholder="Brief excerpt shown in post listings (optional)…"
             rows={2}
-            className="w-full font-sans text-sm text-ink-2 bg-white border border-paper-200 rounded-lg px-4 py-2.5 focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/10 placeholder:text-ink-4 resize-none transition"
+            className="w-full font-sans text-sm text-ink-2 bg-white border border-paper-200 rounded-lg px-4 py-2.5 focus:outline-hidden focus:border-accent/50 focus:ring-2 focus:ring-accent/10 placeholder:text-ink-4 resize-none transition"
           />
 
           {/* Write / Preview tabs */}
@@ -89,11 +89,11 @@ export function PostEditor({ mode, post }: Props) {
             <div className="flex items-center justify-between border-b border-paper-200 px-4 py-2">
               <div className="flex gap-1">
                 <button onClick={() => setTab('write')}
-                  className={`font-mono text-xs px-3 py-1.5 rounded transition-colors ${tab === 'write' ? 'bg-ink text-white' : 'text-ink-3 hover:text-ink hover:bg-paper-100'}`}>
+                  className={`font-mono text-xs px-3 py-1.5 rounded-sm transition-colors ${tab === 'write' ? 'bg-ink text-white' : 'text-ink-3 hover:text-ink hover:bg-paper-100'}`}>
                   Write
                 </button>
                 <button onClick={loadPreview}
-                  className={`font-mono text-xs px-3 py-1.5 rounded transition-colors ${tab === 'preview' ? 'bg-ink text-white' : 'text-ink-3 hover:text-ink hover:bg-paper-100'}`}>
+                  className={`font-mono text-xs px-3 py-1.5 rounded-sm transition-colors ${tab === 'preview' ? 'bg-ink text-white' : 'text-ink-3 hover:text-ink hover:bg-paper-100'}`}>
                   Preview
                 </button>
               </div>
@@ -106,7 +106,7 @@ export function PostEditor({ mode, post }: Props) {
               <textarea
                 value={content} onChange={e => setContent(e.target.value)}
                 placeholder={`Write in Markdown…\n\n# Heading\n\nParagraph text.\n\n\`\`\`python\n# code block\n\`\`\``}
-                className="w-full font-mono text-sm text-ink bg-transparent px-5 py-4 focus:outline-none placeholder:text-ink-5 resize-none min-h-[500px] leading-relaxed"
+                className="w-full font-mono text-sm text-ink bg-transparent px-5 py-4 focus:outline-hidden placeholder:text-ink-5 resize-none min-h-[500px] leading-relaxed"
                 style={{ minHeight: '500px' }}
               />
             ) : (
@@ -143,7 +143,7 @@ export function PostEditor({ mode, post }: Props) {
             <input
               type="text" value={tags} onChange={e => setTags(e.target.value)}
               placeholder="sre, reliability, career"
-              className="w-full font-mono text-sm text-ink border border-paper-200 rounded-lg px-3 py-2 focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/10 bg-paper-50 placeholder:text-ink-4 transition"
+              className="w-full font-mono text-sm text-ink border border-paper-200 rounded-lg px-3 py-2 focus:outline-hidden focus:border-accent/50 focus:ring-2 focus:ring-accent/10 bg-paper-50 placeholder:text-ink-4 transition"
             />
             <p className="font-mono text-xs text-ink-5">Comma-separated. Used as hashtag footer.</p>
           </div>
@@ -164,7 +164,7 @@ export function PostEditor({ mode, post }: Props) {
                   className={`relative w-10 h-5 rounded-full transition-colors ${s.val ? 'bg-accent' : 'bg-paper-300'}`}
                   role="switch" aria-checked={s.val}
                 >
-                  <span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow-sm transition-transform ${s.val ? 'translate-x-5' : 'translate-x-0'}`} />
+                  <span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow-xs transition-transform ${s.val ? 'translate-x-5' : 'translate-x-0'}`} />
                 </button>
               </label>
             ))}

@@ -58,7 +58,7 @@ export function CommentSection({ postId, comments: init, commentsEnabled }: Prop
         <div className="space-y-6 mb-12">
           {init.map(c => (
             <div key={c.id} className="flex gap-4">
-              <div className="w-9 h-9 rounded-full bg-paper-200 flex items-center justify-center flex-shrink-0 font-serif text-ink-3 text-sm font-semibold">
+              <div className="w-9 h-9 rounded-full bg-paper-200 flex items-center justify-center shrink-0 font-serif text-ink-3 text-sm font-semibold">
                 {c.author.charAt(0).toUpperCase()}
               </div>
               <div className="flex-1">
@@ -96,7 +96,7 @@ export function CommentSection({ postId, comments: init, commentsEnabled }: Prop
                 <label className="font-mono text-xs text-ink-3 uppercase tracking-wider">Name *</label>
                 <input type="text" value={author} onChange={e => setAuthor(e.target.value)}
                   required maxLength={80} placeholder="Your name"
-                  className="w-full font-sans text-sm text-ink border border-paper-200 rounded-lg px-3.5 py-2.5 focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/10 bg-paper-50 placeholder:text-ink-4 transition" />
+                  className="w-full font-sans text-sm text-ink border border-paper-200 rounded-lg px-3.5 py-2.5 focus:outline-hidden focus:border-accent/50 focus:ring-2 focus:ring-accent/10 bg-paper-50 placeholder:text-ink-4 transition" />
               </div>
               <div className="space-y-1.5">
                 <label className="font-mono text-xs text-ink-3 uppercase tracking-wider">
@@ -104,7 +104,7 @@ export function CommentSection({ postId, comments: init, commentsEnabled }: Prop
                 </label>
                 <input type="email" value={email} onChange={e => setEmail(e.target.value)}
                   required placeholder="you@example.com"
-                  className="w-full font-sans text-sm text-ink border border-paper-200 rounded-lg px-3.5 py-2.5 focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/10 bg-paper-50 placeholder:text-ink-4 transition" />
+                  className="w-full font-sans text-sm text-ink border border-paper-200 rounded-lg px-3.5 py-2.5 focus:outline-hidden focus:border-accent/50 focus:ring-2 focus:ring-accent/10 bg-paper-50 placeholder:text-ink-4 transition" />
               </div>
             </div>
 
@@ -112,7 +112,7 @@ export function CommentSection({ postId, comments: init, commentsEnabled }: Prop
               <label className="font-mono text-xs text-ink-3 uppercase tracking-wider">Comment *</label>
               <textarea value={body} onChange={e => setBody(e.target.value)}
                 required rows={5} maxLength={5000} placeholder="What's on your mind?"
-                className="w-full font-sans text-sm text-ink border border-paper-200 rounded-lg px-3.5 py-2.5 focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/10 bg-paper-50 placeholder:text-ink-4 resize-y transition" />
+                className="w-full font-sans text-sm text-ink border border-paper-200 rounded-lg px-3.5 py-2.5 focus:outline-hidden focus:border-accent/50 focus:ring-2 focus:ring-accent/10 bg-paper-50 placeholder:text-ink-4 resize-y transition" />
               <p className="font-mono text-xs text-ink-5 text-right">{body.length}/5000</p>
             </div>
 

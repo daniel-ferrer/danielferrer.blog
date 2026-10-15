@@ -1,20 +1,19 @@
 import type { Config } from 'tailwindcss'
-import typography from '@tailwindcss/typography'
+
+// Loaded from src/styles/globals.css via @config. The colors and fonts live in
+// the @theme block there; this file only holds the `prose-blog` typography
+// variant, which the typography plugin reads from the JS theme.
+//
+// Under Tailwind 3, theme('fontFamily.*') returned an array here, which became
+// one font-family declaration per entry; the last one won, so posts rendered
+// in the generic `serif` and `monospace` fonts rather than Lora and Geist Mono. Those generic values
+// are kept as literals so posts look the same as before the upgrade.
+const proseSerif = 'serif'
+const proseMono = 'monospace'
 
 const config: Config = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      fontFamily: {
-        serif: ['Lora', 'Georgia', 'serif'],
-        sans:  ['Cabinet Grotesk', 'system-ui', 'sans-serif'],
-        mono:  ['var(--font-geist-mono)', 'Fira Code', 'monospace'],
-      },
-      colors: {
-        paper: { 50: '#faf9f6', 100: '#f5f3ee', 200: '#ece9e0', 300: '#ddd9ce' },
-        ink:   { DEFAULT: '#1a1916', 2: '#3d3a33', 3: '#7a7568', 4: '#b5afa3', 5: '#d4cfc7' },
-        accent:{ DEFAULT: '#c0392b', light: '#fdf2f1', mid: 'rgba(192,57,43,0.12)' },
-      },
       typography: ({ theme }: { theme: (s: string) => string }) => ({
         blog: {
           css: {
@@ -31,9 +30,9 @@ const config: Config = {
             '--tw-prose-pre-bg':        '#1e1e2e',
             fontSize:   '1.125rem',
             lineHeight: '1.85',
-            fontFamily: theme('fontFamily.serif'),
+            fontFamily: proseSerif,
             maxWidth:   '70ch',
-            'h1,h2,h3,h4': { fontFamily: theme('fontFamily.serif'), fontWeight: '600', letterSpacing: '-0.02em' },
+            'h1,h2,h3,h4': { fontFamily: proseSerif, fontWeight: '600', letterSpacing: '-0.02em' },
             h2: { marginTop: '2.5em', fontSize: '1.55em' },
             h3: { marginTop: '2em',   fontSize: '1.25em' },
             p:  { marginTop: '1.4em', marginBottom: '1.4em' },
@@ -45,7 +44,7 @@ const config: Config = {
               '&:hover': { color: theme('colors.accent.DEFAULT'), textDecorationColor: theme('colors.accent.DEFAULT') },
             },
             code: {
-              fontFamily: theme('fontFamily.mono'),
+              fontFamily: proseMono,
               fontSize: '0.875em',
               background: theme('colors.paper.100'),
               padding: '0.15em 0.35em',
@@ -54,7 +53,7 @@ const config: Config = {
               '&::before': { content: 'none' },
               '&::after':  { content: 'none' },
             },
-            pre: { fontFamily: theme('fontFamily.mono'), fontSize: '0.875em', lineHeight: '1.7', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.06)' },
+            pre: { fontFamily: proseMono, fontSize: '0.875em', lineHeight: '1.7', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.06)' },
             'pre code': { background: 'none', padding: '0', fontSize: 'inherit' },
             blockquote: { fontStyle: 'italic', borderLeftWidth: '2px', borderLeftColor: theme('colors.accent.DEFAULT'), paddingLeft: '1.25em', color: theme('colors.ink.2') },
             'blockquote p:first-of-type::before': { content: 'none' },
@@ -66,6 +65,5 @@ const config: Config = {
       }),
     },
   },
-  plugins: [typography],
 }
 export default config

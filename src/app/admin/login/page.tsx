@@ -40,7 +40,7 @@ export default function LoginPage() {
               <label className="font-mono text-xs text-ink-3 uppercase tracking-wider">{f.label}</label>
               <input type={f.type} value={f.value} onChange={e => f.set(e.target.value)}
                 required autoComplete={f.auto}
-                className="w-full font-sans text-sm text-ink border border-paper-200 rounded-lg px-3.5 py-2.5 focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/10 bg-paper-50 transition" />
+                className="w-full font-sans text-sm text-ink border border-paper-200 rounded-lg px-3.5 py-2.5 focus:outline-hidden focus:border-accent/50 focus:ring-2 focus:ring-accent/10 bg-paper-50 transition" />
             </div>
           ))}
           <button type="submit" disabled={loading}

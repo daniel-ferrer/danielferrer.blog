@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-paper-200 bg-paper-50/90 backdrop-blur-sm">
+      <header className="sticky top-0 z-50 border-b border-paper-200 bg-paper-50/90 backdrop-blur-xs">
         <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/blog" className="flex items-baseline gap-2.5 group">
             <span className="font-serif text-lg font-semibold text-ink tracking-tight group-hover:text-accent transition-colors">Daniel Ferrer</span>

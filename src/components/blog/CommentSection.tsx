@@ -79,7 +79,7 @@ export function CommentSection({ postId, comments: init, commentsEnabled }: Prop
       {commentsEnabled ? (
         status === 'success' ? (
           <div className="bg-green-50 border border-green-200 rounded-xl px-5 py-4 font-sans text-sm text-green-700">
-            Comment submitted — it'll appear once approved. Thanks!
+            Comment submitted — it&apos;ll appear once approved. Thanks!
           </div>
         ) : (
           <form onSubmit={submit} className="space-y-4">

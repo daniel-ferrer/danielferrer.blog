@@ -2,7 +2,7 @@
 
 Personal blog — technical deep dives, lessons learned, evolving perspectives.
 
-Built with Next.js 14, SQLite (Prisma), react-markdown, and Tailwind CSS.
+Built with Next.js 16, SQLite (Prisma), react-markdown, and Tailwind CSS.
 
 ---
 
@@ -93,7 +93,53 @@ To switch to Turso:
 ```bash
 npm run dev          # Start dev server
 npm run build        # Production build
+npm run lint         # ESLint (Next.js + TypeScript rules)
 npm run db:push      # Sync schema to database
 npm run db:studio    # Open Prisma Studio (database GUI)
 npm run db:seed      # Create admin account + welcome post
 ```
+
+## Local checks
+
+```bash
+npm ci
+npx prisma generate
+npm run lint
+npx tsc --noEmit
+```
+
+The production build reads the database while generating pages. To check it
+without using your configured database, run these steps in a shell:
+
+```bash
+(
+  set -e
+  build_db_dir=$(mktemp -d)
+  trap 'rm -rf -- "$build_db_dir"' EXIT
+  export DATABASE_URL="file:$build_db_dir/build.db"
+  npx prisma db push --skip-generate
+  npm run build
+)
+```
+
+This creates an empty SQLite database in a temporary directory and removes it
+after the build. Run database setup and the build as separate commands;
+`--skip-generate` is an option for `prisma db push`. There is no test script
+configured in this project.
+
+## Dependency audit
+
+After the October 2026 dependency refresh, `npm audit` reports 10 findings
+(7 high, 3 moderate, 0 critical). These remain in the Tailwind 3 and Next.js
+ESLint dependency trees:
+
+- [braces stack exhaustion](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)
+  has no patched release. It propagates through chokidar, micromatch and
+  fast-glob into Tailwind and the Next.js ESLint preset.
+- [postcss-selector-parser CPU exhaustion](https://github.com/advisories/GHSA-rj75-hqrm-r3gf)
+  affects the parser versions used by Tailwind, postcss-nested and typography.
+
+Compatible dependency updates have been applied. The remaining npm proposals
+include migrating to Tailwind 4 and downgrading typography or the Next.js ESLint
+preset; these are deliberately deferred rather than applying
+`npm audit fix --force`. Recheck with `npm audit` as upstream fixes become available.

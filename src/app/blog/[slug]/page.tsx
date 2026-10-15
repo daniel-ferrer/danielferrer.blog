@@ -67,7 +67,7 @@ export default async function PostPage({ params }: Props) {
           <div className="flex flex-wrap gap-2 mb-5">
             {post.tags.map(({ tag }) => (
               <Link key={tag.id} href={`/blog/tags/${tag.slug}`}
-                className="font-mono text-xs text-accent bg-accent/5 border border-accent/20 px-2.5 py-1 rounded hover:bg-accent/10 transition-colors">
+                className="font-mono text-xs text-accent bg-accent/5 border border-accent/20 px-2.5 py-1 rounded-sm hover:bg-accent/10 transition-colors">
                 #{tag.name}
               </Link>
             ))}
@@ -102,7 +102,7 @@ export default async function PostPage({ params }: Props) {
           <div className="flex flex-wrap gap-2">
             {post.tags.map(({ tag }) => (
               <Link key={tag.id} href={`/blog/tags/${tag.slug}`}
-                className="font-mono text-sm text-ink-3 hover:text-accent border border-paper-200 hover:border-accent/30 rounded px-3 py-1.5 transition-colors">
+                className="font-mono text-sm text-ink-3 hover:text-accent border border-paper-200 hover:border-accent/30 rounded-sm px-3 py-1.5 transition-colors">
                 #{tag.name}
               </Link>
             ))}

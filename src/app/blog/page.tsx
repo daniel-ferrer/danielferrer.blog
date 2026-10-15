@@ -40,7 +40,7 @@ export default async function BlogIndex() {
         <div className="mb-16 fade-up fade-up-1">
           <p className="font-mono text-xs tracking-widest uppercase text-accent mb-4">Featured</p>
           {/* Overlay card pattern — avoids nested <a> tags */}
-          <article className="relative border border-paper-200 rounded-xl p-8 bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200 group">
+          <article className="relative border border-paper-200 rounded-xl p-8 bg-white hover:border-accent/30 hover:shadow-xs transition-all duration-200 group">
             <Link
               href={`/blog/${featured.slug}`}
               className="absolute inset-0 rounded-xl"
@@ -102,7 +102,7 @@ function PostRow({ post }: { post: PostWithTags }) {
           ))}
         </div>
       </div>
-      <div className="flex items-center gap-3 text-ink-4 font-mono text-xs flex-shrink-0 relative z-10">
+      <div className="flex items-center gap-3 text-ink-4 font-mono text-xs shrink-0 relative z-10">
         <time dateTime={post.publishedAt?.toISOString()}>
           {formatDate(post.publishedAt ?? post.createdAt, { month: 'short', day: 'numeric', year: 'numeric' })}
         </time>

@@ -24,19 +24,19 @@ export function AdminPostActions({ postId, published, commentsEnabled }: Props) 
   return (
     <div className="flex items-center gap-2">
       <Link href={`/admin/posts/${postId}`}
-        className="font-mono text-xs text-ink-3 hover:text-accent transition-colors px-2 py-1 rounded hover:bg-paper-100">
+        className="font-mono text-xs text-ink-3 hover:text-accent transition-colors px-2 py-1 rounded-sm hover:bg-paper-100">
         Edit
       </Link>
       <button onClick={() => toggle('published', !published)}
-        className={`font-mono text-xs px-2 py-1 rounded transition-colors ${published ? 'text-amber-700 hover:bg-amber-50' : 'text-green-700 hover:bg-green-50'}`}>
+        className={`font-mono text-xs px-2 py-1 rounded-sm transition-colors ${published ? 'text-amber-700 hover:bg-amber-50' : 'text-green-700 hover:bg-green-50'}`}>
         {published ? 'Unpublish' : 'Publish'}
       </button>
       <button onClick={() => toggle('commentsEnabled', !commentsEnabled)}
-        className="font-mono text-xs text-ink-4 hover:text-ink-2 px-2 py-1 rounded hover:bg-paper-100 transition-colors">
+        className="font-mono text-xs text-ink-4 hover:text-ink-2 px-2 py-1 rounded-sm hover:bg-paper-100 transition-colors">
         {commentsEnabled ? 'Disable comments' : 'Enable comments'}
       </button>
       <button onClick={deletePost}
-        className="font-mono text-xs text-red-500 hover:text-red-700 px-2 py-1 rounded hover:bg-red-50 transition-colors">
+        className="font-mono text-xs text-red-500 hover:text-red-700 px-2 py-1 rounded-sm hover:bg-red-50 transition-colors">
         Delete
       </button>
     </div>

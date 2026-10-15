@@ -81,7 +81,7 @@ export default async function DashboardPage() {
                     <td className="px-5 py-4">
                       <div className="flex flex-wrap gap-1">
                         {post.tags.map(({ tag }) => (
-                          <span key={tag.id} className="font-mono text-[0.6rem] text-ink-4 bg-paper-100 px-1.5 py-0.5 rounded">#{tag.name}</span>
+                          <span key={tag.id} className="font-mono text-[0.6rem] text-ink-4 bg-paper-100 px-1.5 py-0.5 rounded-sm">#{tag.name}</span>
                         ))}
                       </div>
                     </td>
